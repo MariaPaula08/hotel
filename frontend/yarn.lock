@@ -240,6 +240,44 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fullcalendar/core@npm:^6.1.10":
+  version: 6.1.10
+  resolution: "@fullcalendar/core@npm:6.1.10"
+  dependencies:
+    preact: "npm:~10.12.1"
+  checksum: 3f0dd0de6aff7d80ea91a10455c76e4082b26e8aaacfe3ed94e2e2411ef3b28323c42186ac79a90791eb835eee0d0d1d5b54416f7957a1dab4d9ef0a57145b72
+  languageName: node
+  linkType: hard
+
+"@fullcalendar/daygrid@npm:^6.1.10":
+  version: 6.1.10
+  resolution: "@fullcalendar/daygrid@npm:6.1.10"
+  peerDependencies:
+    "@fullcalendar/core": ~6.1.10
+  checksum: 04543281d75dc8a3dceb2e741c3512d1275a96bcb499a40b0f26e2a32e3287f7a5d1ac5cf6367507490f019b6bd9570b25f362d3ffb57a1abf7dbc10ed0a1dca
+  languageName: node
+  linkType: hard
+
+"@fullcalendar/interaction@npm:^6.1.10":
+  version: 6.1.10
+  resolution: "@fullcalendar/interaction@npm:6.1.10"
+  peerDependencies:
+    "@fullcalendar/core": ~6.1.10
+  checksum: 59ee0934370c7231000ca96b42644219c4c7568ce29a75ad1738771636a89abca2aac61a41d7d099eb5ed2a04af6210dc868f5938a34339645da5127b0ce784b
+  languageName: node
+  linkType: hard
+
+"@fullcalendar/react@npm:^6.1.10":
+  version: 6.1.10
+  resolution: "@fullcalendar/react@npm:6.1.10"
+  peerDependencies:
+    "@fullcalendar/core": ~6.1.10
+    react: ^16.7.0 || ^17 || ^18
+    react-dom: ^16.7.0 || ^17 || ^18
+  checksum: 0b287e39875b69e99c49a409e3a4b44501329e2ffd0d0f6b6a63ad8f7226f67c8ae5f81e608cf2b0aee3be8c6c0b46de46889890e293b2da44994550cdc8622d
+  languageName: node
+  linkType: hard
+
 "@humanwhocodes/config-array@npm:^0.11.13":
   version: 0.11.13
   resolution: "@humanwhocodes/config-array@npm:0.11.13"
@@ -1045,6 +1083,10 @@ __metadata:
   resolution: "client@workspace:."
   dependencies:
     "@fortawesome/free-regular-svg-icons": "npm:^6.4.2"
+    "@fullcalendar/core": "npm:^6.1.10"
+    "@fullcalendar/daygrid": "npm:^6.1.10"
+    "@fullcalendar/interaction": "npm:^6.1.10"
+    "@fullcalendar/react": "npm:^6.1.10"
     "@types/react": "npm:^18.2.15"
     "@types/react-dom": "npm:^18.2.7"
     "@vitejs/plugin-react-swc": "npm:^3.3.2"
@@ -3257,6 +3299,13 @@ __metadata:
     picocolors: "npm:^1.0.0"
     source-map-js: "npm:^1.0.2"
   checksum: 748b82e6e5fc34034dcf2ae88ea3d11fd09f69b6c50ecdd3b4a875cfc7cdca435c958b211e2cb52355422ab6fccb7d8f2f2923161d7a1b281029e4a913d59acf
+  languageName: node
+  linkType: hard
+
+"preact@npm:~10.12.1":
+  version: 10.12.1
+  resolution: "preact@npm:10.12.1"
+  checksum: c77a55e897dcf298b7aa13637fed29744d3cf6c083f2832856e8551dbf27303c8b6946569736de16b05cba15c0e44ad404beb236ad9e36583a6fc5e2efad7777
   languageName: node
   linkType: hard
 

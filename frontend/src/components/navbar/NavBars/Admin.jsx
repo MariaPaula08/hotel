@@ -16,7 +16,7 @@ function Admin( { user } ) {
                     <Link to='/'>Home</Link>
                 </li>
                 <li>
-                    <Link to='/#'>DashBoard</Link>
+                    <Link to='/calendar'>Reservas Calendario</Link>
                 </li>
                 <li>
                     <Link to='/#'>Asistencias</Link>

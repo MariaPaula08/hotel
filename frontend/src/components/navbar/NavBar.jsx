@@ -1,9 +1,7 @@
 import { useAuth } from '../../context/AuthContext'
 import './stylesNav.css'
 
-import Admin from './NavBars/admin'
-import Porteria from './NavBars/Porteria'
-import Aprendiz from './NavBars/Aprendiz'
+import Admin from './NavBars/Admin'
 // import Aprendiz from './NavBars/Aprendiz'
 
 

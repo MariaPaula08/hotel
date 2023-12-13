@@ -7,6 +7,7 @@ import LoginPage from './pages/LoginPage'
 
 import ProtectedRoute from './ProtectedRoute'
 import HomePage from './pages/HomePage'
+import CalendarPage from './pages/CalendarPage'
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
             {/* // TODO Rutas Protegidas */}
             <Route element={<ProtectedRoute/>}>
               <Route path='/home' element={ <HomePage/> } />
+              <Route path='/calendar' element={ <CalendarPage/> } />
             </Route>
           </Routes>
       </BrowserRouter>

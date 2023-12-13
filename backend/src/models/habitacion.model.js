@@ -26,7 +26,7 @@ const HabitacionSchema = new mongoose.Schema({
     },
 });
 
-HabitacionModel.plugin(mongoosePaginate);
+HabitacionSchema.plugin(mongoosePaginate);
 
 export default mongoose.model('Habitacion', HabitacionSchema);
 
