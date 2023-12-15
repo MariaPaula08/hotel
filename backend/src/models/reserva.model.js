@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import mongoosePaginate from 'mongoose-paginate';
 
 const ReservaSchema = new mongoose.Schema({
     fechaTomaReserva: {
@@ -56,7 +55,6 @@ const ReservaSchema = new mongoose.Schema({
     },
 });
 
-ReservaSchema.plugin(mongoosePaginate);
 
 export default mongoose.model('Reserva', ReservaSchema);
 

@@ -1,0 +1,30 @@
+.containerModal{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    background: rgb(223, 252, 223);
+    padding: .8em 1em;
+    border-radius: 20px;
+    align-items: center;
+    box-shadow: 0 0 7px rgb(162, 162, 162);
+}
+
+.containerModal input{
+    outline: none;
+    border: none;
+    width: 80%;
+    font-size: 1.2em;
+}
+
+.ReactModal__Content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 0 !important;
+    top: 0 !important;
+    height: 100vh !important;
+    width: 100vw !important;
+    flex-wrap: wrap;
+    background: rgba(189, 255, 255, 0.032) !important;
+}

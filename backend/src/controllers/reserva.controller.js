@@ -1,27 +1,112 @@
 import Reserva from '../models/reserva.model.js'
 
-async function createReserva(req, res) {
-    try {
-        const reserva = new Reserva(req.body);
-        const reservaStored = await reserva.save();
-        res.status(201).send(reservaStored);
-    } catch (error) {
-        res.status(400).send({ msg: "Error al crear la reserva" });
-        console.log(error)
+// Función para calcular el costo del día según el tipo de habitación
+function calcularCostoDelDia(tipoDeHabitacion) {
+    // Implementa la lógica de cálculo según los tipos de habitación
+    // ...
+
+    // Ejemplo:
+    if (tipoDeHabitacion === "cabaña") {
+        return 360000;
+    } else if (tipoDeHabitacion === "jacuzzi") {
+        return 500000;
+    } else if (tipoDeHabitacion === "casaGrande") {
+        return 240000; // o 270000 según la temporada
+    } else {
+        // Tipo de habitación no reconocido
+        return 0;
     }
 }
 
-async function getReserva(req, res) {
-    const { page = 1, limit = 10 } = req.query;
+function calcularTotal(costoDelDia, numeroDeHuespedes) {
+    return costoDelDia * numeroDeHuespedes;
+}
+
+async function createReserva(req, res) {
+    try {
+        const {
+            fechaTomaReserva,
+            habitacion,
+            tipoDeHabitacion,
+            cedulaHuesped,
+            nombreDelHuesped,
+            correoHuesped,
+            numeroDeHuespedes,
+            fechaIngreso,
+            fechaSalida
+        } = req.body;
+
+        // Verificar si ya existe una reserva para esa habitación y fechas
+        const existingReserva = await Reserva.findOne({
+            habitacion,
+            $or: [
+                {
+                    fechaIngreso: { $lte: fechaIngreso },
+                    fechaSalida: { $gte: fechaIngreso }
+                },
+                {
+                    fechaIngreso: { $lte: fechaSalida },
+                    fechaSalida: { $gte: fechaSalida }
+                },
+                {
+                    fechaIngreso: { $gte: fechaIngreso },
+                    fechaSalida: { $lte: fechaSalida }
+                }
+            ]
+        });
+
+        if (existingReserva) {
+            return res.status(400).send({ msg: "Esta habitación ya está reservada para ese período de tiempo." });
+        }
+
+        // Calcular el costo del día según el tipo de habitación
+        const costoDelDia = calcularCostoDelDia(tipoDeHabitacion);
+
+        // Calcular la duración de la estadía en días
+        const unDia = 24 * 60 * 60 * 1000; // Milisegundos en un día
+        const tiempoEstadia = Math.abs(new Date(fechaSalida) - new Date(fechaIngreso));
+        const diasEstadia = Math.round(tiempoEstadia / unDia);
+
+        // Asegurémonos de que el cálculo del total no sea NaN
+        const total = isNaN(costoDelDia) || isNaN(diasEstadia) || isNaN(numeroDeHuespedes) ? 0 : costoDelDia * diasEstadia * numeroDeHuespedes;
+        const abono = total * 0.5;
+
+        // Crear la reserva
+        const reserva = new Reserva({
+            fechaTomaReserva,
+            habitacion,
+            tipoDeHabitacion,
+            cedulaHuesped,
+            nombreDelHuesped,
+            correoHuesped,
+            costoDelDia,
+            numeroDeHuespedes,
+            saldo: total - abono,
+            abono,
+            total,
+            fechaIngreso,
+            fechaSalida,
+        });
+
+        // Guardar la reserva
+        const reservaStored = await reserva.save();
+
+        // Enviar respuesta
+        res.status(201).send(reservaStored);
+    } catch (error) {
+        console.error(error);
+        res.status(400).send({ msg: "Error al crear la reserva" });
+    }
+}
+
+async function getReservas(req, res) {
 
     try {
-        const options = {
-            page: parseInt(page),
-            limit: parseInt(limit),
-        };
+        
+        const response = await Reserva.find()
 
-        const reservas = await Reserva.paginate({}, options);
-        res.status(200).send(reservas);
+        res.status(200).send({ msg: response })
+
     } catch (error) {
         res.status(400).send({ msg: "Error al obtener las reservas" });
     }
@@ -52,7 +137,7 @@ async function deleteReserva(req, res) {
 
 export {
     createReserva,
-    getReserva,
+    getReservas,
     updateReserva,
     deleteReserva,
 };

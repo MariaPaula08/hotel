@@ -16,19 +16,7 @@ function Admin( { user } ) {
                     <Link to='/'>Home</Link>
                 </li>
                 <li>
-                    <Link to='/calendar'>Reservas Calendario</Link>
-                </li>
-                <li>
-                    <Link to='/#'>Asistencias</Link>
-                </li>
-                <li>
-                    <Link to='/#'>Cards</Link>
-                </li>
-                <li>
-                    <Link to='/#'>Noticias</Link>
-                </li>
-                <li>
-                    <Link to='#'>Comunidad SENA</Link>
+                    <Link to='/calendar'>Reservas</Link>
                 </li>
             </ul>
             <div className='flex h-full gap-3' style={{ alignItems: 'center' }}>
